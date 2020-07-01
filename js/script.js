@@ -19,7 +19,10 @@ $(document).ready(
           query: queryValue
         },
         success: function(data){
-          console.log(data)
+
+
+          // Variante pagina Corrente
+          $(".page").text(data.page)
           // Handlebars.
           var source = $("#film-template").html();
           var template = Handlebars.compile(source);
@@ -35,6 +38,9 @@ $(document).ready(
                // Appendere TEMPLATE HTML nel Elemento desiderato.
                $(".wrapper-film").append(html);
              }
+
+         // Alla fine Resettare il Search.
+         $("#js_search").val("");
 
         },
         error: function(){

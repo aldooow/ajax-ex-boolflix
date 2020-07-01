@@ -14,6 +14,9 @@
     <div class="wrapper">
       <input id="js_search" type="text" placeholder="Digita film">
       <button id="js_button-search"><i class="fas fa-search"></i> CERCA</button>
+      <span class="prev"><<</span>
+      <h5 page-current="" class="page"></h5>
+      <span class="next">>></span>
     </div>
 
     <div class="wrapper-film">
@@ -24,6 +27,7 @@
     <!-- TEMPLATE -->
     <script id="film-template"  type="text/x-handlebars-template">
       <div class="film">
+        <p>{{ page }}</p>
         <h2>{{ title }}</h2>
         <div>Original Title: {{ original_title }} </div>
         <div>Lenguage: {{ original_language }}  </div>
