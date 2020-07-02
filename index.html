@@ -11,15 +11,13 @@
     <title>AJAX|EX|BOOLFLIX</title>
   </head>
   <body>
-    <div class="wrapper">
+    <div id="wrapper">
       <input id="js_search" type="text" placeholder="Digita film">
       <button id="js_button-search"><i class="fas fa-search"></i> CERCA</button>
-      <span class="prev"><<</span>
-      <h5 page-current="" class="page"></h5>
-      <span class="next">>></span>
     </div>
 
-    <div class="wrapper-film">
+    <div id="wrapper-film" class="vote-stars">
+      <img src="img/flags/de.ico" alt="ico">
 
     </div>
 
@@ -29,9 +27,19 @@
       <div class="film">
         <p>{{ page }}</p>
         <h2>{{ title }}</h2>
-        <div>Original Title: {{ original_title }} </div>
-        <div>Lenguage: {{ original_language }}  </div>
-        <div>Vote: {{ vote_average }}  </div>
+        <ul>
+          <li>Original Title: {{ original_title }} </li>
+          <li>Language: {{{ language }}}  </li>
+          <li class="vote-stars">Vote: {{{ vote }}}  </li>
+          <li>{{ star }}</li>
+        </ul>
+
+      </div>
+    </script>
+
+    <script id="error-template"  type="text/x-handlebars-template">
+      <div class="error">
+        {{ message }}
       </div>
     </script>
     <!-- END TEMPLATE -->
