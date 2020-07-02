@@ -16,13 +16,14 @@ $(document).ready(
 
       $.ajax(
       {
-        url: 'https://api.themoviedb.org/3/search/movie',
+        url: 'https://api.themoviedb.org/3/search/multi',
         method: 'GET',
         data: {
           api_key: '8269547e83cd87d7a77b566ccaff24bd',
           query: searchValue
         },
         success: function(data){
+          console.log(data)
           printMovies(data.results);
 
 
@@ -42,7 +43,6 @@ $(document).ready(
 // Questa funzione stampa nel html i film contenuti dentro l'Array dato.
 // --> moviesArray: è un Array di Objects
 function printMovies(moviesArray){
-
   // Handlebars.
   var source = $("#film-template").html();
   var template = Handlebars.compile(source);
@@ -51,12 +51,12 @@ function printMovies(moviesArray){
        // Variante di singolo Film che è dentro l'Array.
        var film = moviesArray[i];
        var context = {
-         title: film.title,
-         original_title: film.original_title,
+         title: film.title || film.name,
+         original_title: film.original_title || film.original_name,
          language: printFlags(film.original_language),
-         vote: printStars(film.vote_average)
+         vote: printStars(film.vote_average),
+         url_poster: printPoster(film.backdrop_path)
        }
-       console.log(film.original_language)
        // TEMPLATE da Appendere.
        var html = template(context)
        // Appendere TEMPLATE HTML nel Elemento desiderato.
@@ -103,7 +103,6 @@ function printStars(voto){
 // Questa funzione stampa un icona nel HTML,
 // --> lingua: è una stringa esp. es, it, en, fr .
 // RETURN: una icona da stampare.
-
 function printFlags(lingua){
   var language = lingua;
   var languageArray = ["es", "it", "en", "de", "pt", "fr"]
@@ -121,4 +120,19 @@ function printFlags(lingua){
     }
   }
   return flag
+}
+
+// -----------------------
+// FUNZIONE: printPoster()
+// Questa funzione stampa la copertina dei Film/SerieTv nel HTML,
+// --> poster: è una Stringa URL.
+// RETURN: una Stringa URL.
+function printPoster(poster){
+  var posterImage = 'https://image.tmdb.org/t/p/w185' + poster;
+  // Se l'argomento "Poster" è uguale a "Null"
+  if(poster == null){
+    // Stampo questa URL(NotImage)
+    posterImage = 'img/not_img/not-available.png';
+  }
+  return posterImage
 }

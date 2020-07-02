@@ -10,3 +10,28 @@ body {
   font-size: 15px;
   background: lightblue;
 }
+li {
+  list-style: none;
+}
+li img {
+  vertical-align: middle;
+}
+#wrapper {
+  width: 80%;
+  margin: auto;
+}
+.img_poster {
+ width: 185px
+}
+#wrapper-film {
+  flex-wrap: wrap;
+  display: flex;
+}
+.film {
+  background: white;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: calc(100%/5)
+}
