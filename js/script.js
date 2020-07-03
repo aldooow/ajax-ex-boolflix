@@ -4,37 +4,48 @@
 $(document).ready(
   function(){
 
+    $('#someTextBox').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
 
-    $("#js_button-search").on("click", function(){
-      $("#wrapper-film").html ("");
-      var searchValue = $("#js_search").val();
+    }
+});
 
-      console.log()
+    $("#js_search").keypress(function(event){
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13'){
 
-      var valuePage = $(".page").val();
-      var valuePageData = parseInt(valuePage)
+        $("#wrapper-film").html ("");
+        var searchValue = $("#js_search").val();
 
-      $.ajax(
-      {
-        url: 'https://api.themoviedb.org/3/search/multi',
-        method: 'GET',
-        data: {
-          api_key: '8269547e83cd87d7a77b566ccaff24bd',
-          query: searchValue,
-          language: 'it-IT'
-        },
-        success: function(data){
-          console.log(data)
-          printMovies(data.results);
+        console.log()
+
+        var valuePage = $(".page").val();
+        var valuePageData = parseInt(valuePage)
+
+        $.ajax(
+        {
+          url: 'https://api.themoviedb.org/3/search/multi',
+          method: 'GET',
+          data: {
+            api_key: '8269547e83cd87d7a77b566ccaff24bd',
+            query: searchValue,
+            language: 'it-IT'
+          },
+          success: function(data){
+            console.log(data)
+            printMovies(data.results);
 
 
-        },
-        error: function(){
-            var messageError = "Inserire una chiave giusta";
-            printMessageError(messageError);
+          },
+          error: function(){
+              var messageError = "Inserire una chiave giusta";
+              printMessageError(messageError);
+          }
         }
+      );
       }
-    );
+
     });
 
   });
@@ -57,7 +68,8 @@ function printMovies(moviesArray){
          language: printFlags(film.original_language),
          vote: printStars(film.vote_average),
          url_poster: printPoster(film.poster_path),
-         overview: film.overview
+         overview: film.overview,
+         type: film.media_type
        }
        // TEMPLATE da Appendere.
        var html = template(context)

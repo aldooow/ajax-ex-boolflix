@@ -12,12 +12,15 @@
   </head>
   <body>
 
-    <div id="wrapper">
-      <input id="js_search" type="text" placeholder="Digita film">
-      <button id="js_button-search"><i class="fas fa-search"></i> CERCA</button>
-      <div id="wrapper-film">
-
+    <div class="header">
+      <a href="https://fontmeme.com/netflix-font/"><img src="https://fontmeme.com/permalink/200703/c2afbefb193becb208cc4f7dcf0a14da.png" alt="netflix-font" border="0"></a>
+      <div class="search">
+        <input id="js_search" type="text" placeholder="Digita film">
+        <!-- <button id="js_button-search"><i class="fas fa-search"></i> CERCA</button> -->
       </div>
+    </div>
+
+    <div id="wrapper-film">
     </div>
 
 
@@ -25,9 +28,6 @@
 
     <!-- TEMPLATE -->
     <script id="film-template"  type="text/x-handlebars-template">
-
-
-
       <div class="film">
         <div class="poster-film">
           <img class="img_poster" src="{{ url_poster }}" alt="img">
@@ -38,7 +38,8 @@
             <li>Original Title: {{ original_title }} </li>
             <li>Language: {{{ language }}}  </li>
             <li class="vote-stars">Vote: {{{ vote }}}  </li>
-            <li>overview: {{ overview }}</li>
+            <li>Type: <b> {{ type }} </b> </li>
+            <li class="overview-film"> Overview: {{ overview }}</li>
           </ul>
         </div>
       </div>
