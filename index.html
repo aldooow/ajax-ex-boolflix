@@ -25,17 +25,22 @@
 
     <!-- TEMPLATE -->
     <script id="film-template"  type="text/x-handlebars-template">
+
+
+
       <div class="film">
-        <p>{{ page }}</p>
-        <h2>{{ title }}</h2>
-        <img class="img_poster"src="{{ url_poster }}" alt="img">
-        <ul>
-          <li>Original Title: {{ original_title }} </li>
-          <li>Language: {{{ language }}}  </li>
-          <li class="vote-stars">Vote: {{{ vote }}}  </li>
-
-        </ul>
-
+        <div class="poster-film">
+          <img class="img_poster" src="{{ url_poster }}" alt="img">
+        </div>
+        <div class="info-film">
+          <h2>{{ title }}</h2>
+          <ul>
+            <li>Original Title: {{ original_title }} </li>
+            <li>Language: {{{ language }}}  </li>
+            <li class="vote-stars">Vote: {{{ vote }}}  </li>
+            <li>overview: {{ overview }}</li>
+          </ul>
+        </div>
       </div>
     </script>
 

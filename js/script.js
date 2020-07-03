@@ -20,7 +20,8 @@ $(document).ready(
         method: 'GET',
         data: {
           api_key: '8269547e83cd87d7a77b566ccaff24bd',
-          query: searchValue
+          query: searchValue,
+          language: 'it-IT'
         },
         success: function(data){
           console.log(data)
@@ -55,7 +56,8 @@ function printMovies(moviesArray){
          original_title: film.original_title || film.original_name,
          language: printFlags(film.original_language),
          vote: printStars(film.vote_average),
-         url_poster: printPoster(film.backdrop_path)
+         url_poster: printPoster(film.poster_path),
+         overview: film.overview
        }
        // TEMPLATE da Appendere.
        var html = template(context)
@@ -128,7 +130,7 @@ function printFlags(lingua){
 // --> poster: è una Stringa URL.
 // RETURN: una Stringa URL.
 function printPoster(poster){
-  var posterImage = 'https://image.tmdb.org/t/p/w185' + poster;
+  var posterImage = 'https://image.tmdb.org/t/p/w342' + poster;
   // Se l'argomento "Poster" è uguale a "Null"
   if(poster == null){
     // Stampo questa URL(NotImage)
