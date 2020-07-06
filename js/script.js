@@ -12,37 +12,21 @@ $(document).ready(
         var searchValue = $("#js_search").val();
         var typeMovie = 'movie';
         var typeTv = 'tv';
-        printAjax(searchValue, typeMovie);
-        printAjax(searchValue, typeTv);
+        callAjax(searchValue, typeMovie);
+        callAjax(searchValue, typeTv);
 
-        var id_credits = 58841;
-
-        $.ajax(
-        {
-          url: 'https://api.themoviedb.org/3/tv/' + id_credits + '/credits',
-          method: 'GET',
-          data: {
-            api_key: '8269547e83cd87d7a77b566ccaff24bd',
-            query: searchValue,
-            language: 'it-IT'
-          },
-          success: function(data){
-            console.log(data)
-
-          },
-          error: function(){
-              var messageError = "Inserire una chiave giusta";
-              printMessageError(messageError);
-          }
-        });
       }
 
     });
 
   });
 
-
-function printAjax(query, type){
+// -----------------------
+// FUNZIONE: callAjax()
+// Questa funzione fa una chiamata AJAX.
+// --> query: è un è una stringa, che determina cosa cercare nella chiamata Ajax.
+// --> type: è una stringa, che determina il tipo di chiamata Ajax da usare.
+function callAjax(query, type){
   $.ajax(
   {
     url: 'https://api.themoviedb.org/3/search/' + type,
@@ -53,7 +37,7 @@ function printAjax(query, type){
       language: 'it-IT'
     },
     success: function(data){
-      console.log(data)
+      // console.log(data)
       printMovies(data.results, type);
     },
     error: function(){
@@ -85,7 +69,7 @@ function printMovies(moviesArray, type){
         title = film.name;
         original_title = film.original_name;
        }
-
+       var id_credits = film.id;
        var context = {
          // title: film.title || film.name,
          title: title,
@@ -95,8 +79,9 @@ function printMovies(moviesArray, type){
          vote: printStars(film.vote_average),
          url_poster: printPoster(film.poster_path),
          overview: film.overview,
-         type: type
+         type: type,
        }
+
        // TEMPLATE da Appendere.
        var html = template(context)
        // Appendere TEMPLATE HTML nel Elemento desiderato.
@@ -105,6 +90,38 @@ function printMovies(moviesArray, type){
  // Alla fine Resettare il Search.
  $("#js_search").val("");
 };
+
+
+
+// // asaasasas
+// function casting(type, id_credits){
+//   $.ajax(
+//   {
+//     url: 'https://api.themoviedb.org/3/' + type + '/' + id_credits + '/credits',
+//     method: 'GET',
+//     data: {
+//       api_key: '8269547e83cd87d7a77b566ccaff24bd',
+//       language: 'it-IT'
+//     },
+//     success: function(data){
+//       // console.log(data.cast);
+//       var castFilm = data.cast;
+//       for(var i = 0; i < 5; i++){
+//         var actor = castFilm[i];
+//         console.log(actor.character + " is " +  actor.name )
+//         var casting = actor.character + " is " +  actor.name;
+//         return casting;
+//       }
+//
+//     },
+//     error: function(){
+//         var messageError = "Inserire una chiave giusta";
+//         printMessageError(messageError);
+//     }
+//   });
+// }
+// // asasasasasa
+
 
 // -----------------------
 // FUNZIONE: printMessageError()
